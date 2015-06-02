@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+               #{info.nazwa} - Edycja ogłoszenia
+            </ui:define>
+
+            <ui:define name="box">  
+               <h1>Edytuj ogłoszenie</h1>
+		<br></br>
+		<h:form>
+			KATEGORIA<br></br>
+			<h:selectOneMenu value="#{ogloszeniaController.current.kategoria}">
+			  <f:selectItems value="#{ogloszeniaController.kat.kat_list}" var="c"
+   			itemLabel="#{c.nazwa}" itemValue="#{c.id}" />
+			  </h:selectOneMenu> 
+			<br></br>
+			TYTUŁ<br></br>
+			<h:inputText value="#{ogloszeniaController.current.tytul}" maxlength="32" /> 
+			<br></br>
+			TREŚĆ<br></br>
+			<h:inputTextarea rows="5" cols="80" value="#{ogloszeniaController.current.tresc}" maxlength="1024" /> 
+			<br></br>
+			CENA<br></br>
+			<h:inputText value="#{ogloszeniaController.current.cena}" maxlength="32" /> 
+			<br></br>
+			EMAIL<br></br>
+			<h:inputText value="#{ogloszeniaController.current.email}" maxlength="32" /> 
+			<br></br>
+			TELEFON<br></br>
+			<h:inputText value="#{ogloszeniaController.current.telefon}" maxlength="12" /> 
+			<br></br>
+			MIASTO<br></br>
+			<h:inputText value="#{ogloszeniaController.current.miasto}" maxlength="32" /> 
+			<br></br>
+			KOD POCZTOWY<br></br>
+			<h:inputText value="#{ogloszeniaController.current.kodPocztowy}" maxlength="6" /> 
+			<br></br>
+			ULICA<br></br>
+			<h:inputText value="#{ogloszeniaController.current.ulica}" maxlength="64" /> 
+			
+			<br></br>
+			<br></br>
+			<h:commandButton value="Edytuj" action="#{ogloszeniaController.edytuj}" /> 
+			</h:form>   
+			
+			<br/>
+						<h1>Zdjęcia</h1>
+						
+						
+						<h:dataTable class="zdjecia" value="#{ogloszeniaController.img}" var="item" rules="all" >
+	                  <h:column>
+                        <a href="http://localhost:8080/Projekt_Ogloszenia2/img?id=#{item.id}"><img src="http://localhost:8080/Projekt_Ogloszenia2/podglad?id=#{item.id}" height="200" width="200"/></a>
+                    </h:column>
+                    <h:column>
+                          #{item.opis}
+                    </h:column>    
+                </h:dataTable>
+            </ui:define>
+	
+        </ui:composition>
+        
+    </body>
+</html>

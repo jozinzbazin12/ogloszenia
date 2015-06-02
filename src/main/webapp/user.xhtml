@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+    	  xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+              #{info.nazwa} - Panel użytkownika
+            </ui:define>
+
+            <ui:define name="box">
+              <h1>Panel użytkownika</h1>
+              <br/>
+              <br/>
+              <h2>Zmiana skórki</h2>
+              <h:form>
+              <h:selectOneMenu value="#{user.skorka}">
+			   	<f:selectItem itemValue="sk1" itemLabel="Domyślna" selected="true" />
+			   	<f:selectItem itemValue="sk2" itemLabel="Pomarańczowa" />
+			   	<f:selectItem itemValue="sk3" itemLabel="Kosmiczna" />
+			</h:selectOneMenu>
+              <h:commandButton id="submit" value="Zmień" action="#{user.zmienskorke}" />
+              </h:form>
+             
+             <h1>Zmiana ilości ogłoszeń na stronę</h1>
+               <h:form>
+            
+			<h:inputText value="#{user.ile}" />
+              <h:commandButton id="submit" value="Zmień" action="#{user.zmienilosc}" />
+              </h:form>
+              <br/>
+              <br/>
+             <h1>Twoje ogłoszenia:</h1>
+             <h:form>
+	             <h:dataTable class="ogloszenia" value="#{ogloszeniaController.wlasne}" var="item" rules="all" >
+	                  <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tytuł"/>
+                        </f:facet>
+                           <h:commandLink action="#{ogloszeniaController.prepareView2}" value="#{item.tytul}"/>
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Edytuj"/>
+                        </f:facet>
+                        <h:commandButton action="#{ogloszeniaController.prepareEdit}" value="Edytuj"/>
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Usuń"/>
+                        </f:facet>
+                        <h:commandButton action="#{ogloszeniaController.prepareDelete}" value="Usuń"/>
+                    </h:column>
+                </h:dataTable>
+             </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

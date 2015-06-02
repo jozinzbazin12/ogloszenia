@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                #{info.nazwa} - Panel administracyjny
+            </ui:define>
+
+            <ui:define name="box">
+              <h1>PANEL ADMINA</h1>
+		<br/>
+		<h:form>
+		Max ilość plików: 
+		   <h:inputText value="#{adminController.plikow}" /><br/>
+		Max rozmiar pliku (KB): 
+ 		<h:inputText value="#{adminController.rozmiar}" maxlength="7" />
+		<br/>
+		 <h:commandButton id="submit" value="Zmień" action="#{adminController.zmienpliki}" />
+		</h:form>
+		<br/>
+		
+		<br/><h:link value="Zarządzanie kontami użytkowników" outcome="admin_konta" />
+		<br/><h:link value="Zarządzanie skargami" outcome="admin_skargi" />
+		<br/><h:link value="Zarządzanie kategoriami" outcome="admin_kategorie" />
+		<br/><h:link value="Zarządzanie słowami zakazanymi" outcome="admin_slowa" />
+		<br/><h:link value="Zarządzanie notatkiami" outcome="admin_notatki" />
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

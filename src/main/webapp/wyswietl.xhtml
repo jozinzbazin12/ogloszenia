@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+
+	<ui:composition template="./template.xhtml">
+
+		<ui:define name="title">
+              #{info.nazwa} - #{ogloszeniaController.current.tytul}
+            </ui:define>
+
+		<ui:define name="box">
+			<h1>#{ogloszeniaController.current.tytul}</h1>
+			<br/>
+				<h2>TREŚĆ OGŁOSZENIA:</h2>
+				<br/>
+					<h4>Kategoria: #{ogloszeniaController.kategoria}</h4>
+					<br/> <pre>${ogloszeniaController.current.tresc}</pre> <br/> <br/>
+						Cena: <b>${ogloszeniaController.current.cena}</b> <br/>
+						TELEFON: <b>${ogloszeniaController.current.telefon}</b><br/>
+						EMAIL: <b>${ogloszeniaController.current.email}</b> <br/>
+						MIASTO: <b>${ogloszeniaController.current.miasto}</b><br/>
+						KOD POCZTOWY: <b>${ogloszeniaController.current.kodPocztowy}</b> <br/>
+						ULICA: <b>${ogloszeniaController.current.ulica}</b><br/> <br/>
+						WYŚWIETLEŃ: <b>${ogloszeniaController.current.wyswietlen}</b> <br/>
+						<br/>
+						<h1>Zdjęcia</h1>
+						
+						
+						<h:dataTable class="zdjecia" value="#{ogloszeniaController.img}" var="item" rules="all" >
+	                  <h:column>
+                        <a href="http://localhost:8080/Projekt_Ogloszenia2/img?id=#{item.id}"><img src="http://localhost:8080/Projekt_Ogloszenia2/podglad?id=#{item.id}" height="200" width="200"/></a>
+                    </h:column>
+                    <h:column>
+                          #{item.opis}
+                    </h:column>    
+                </h:dataTable>
+						<br/> <br/>
+						<h2>Masz coś do tego ogłoszenia? Zgłoś to administracji!</h2> <br/>
+						<h:form>
+							<h:inputTextarea value="#{ogloszeniaController.warn}"/> 
+							<br></br>
+							<h:commandButton value="Wyślij skargę" action="#{ogloszeniaController.wyslijwarn}"/>
+						</h:form>
+						
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

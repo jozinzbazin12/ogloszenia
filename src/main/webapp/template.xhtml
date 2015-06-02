@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="http://localhost:8080/ProjektOgloszenia/Content/css/#{user.skorka}.css" rel="stylesheet" type="text/css" />
+        <title><ui:insert name="title">Facelets Template</ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <div id="mainContainer">
+            <div id="left" class="przycisky"> 
+            <h:form>
+           	 	<h:button class="top-btn" value="Strona główna" outcome="home" /> 
+           	 	<h:button class="top-btn"  value="Przeglądaj ogłoszenia" outcome="przegladaj" /> 
+           	 	<h:commandButton class="top-btn"  value="Dodaj ogłoszenie" action="#{ogloszeniaController.prepareNew}" rendered="#{user.logged}"/> 
+           	 	<h:button class="top-btn"  value="Zaloguj" outcome="dodaj" rendered="#{!user.logged}"/> 
+           	 	<h:button class="top-btn"  value="Zarejestruj" outcome="rejestracja" rendered="#{!user.logged}"/> 
+           	 	<h:button class="top-btn"  value="Panel użytkownika" outcome="user" rendered="#{user.logged}"/> 
+           	 	<h:button class="top-btn"  value="Panel admina" outcome="admin" rendered="#{user.admin}"/> 
+           	 	<h:commandButton class="top-btn"  value="Wyloguj" action="#{user.logout}" rendered="#{user.logged}" /> 
+           	 	<h1><h:outputText class="right" value="Siema #{user.nick}" rendered="#{user.logged}" /></h1>
+           	 	</h:form>
+            </div>
+            <div id="content">
+             <h1><h:outputText value="#{user.response}" /></h1>
+          	<br></br>
+          	 <br></br>
+                 <ui:insert name="box">Box Content Here</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

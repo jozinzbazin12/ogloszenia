@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+    	xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+               #{info.nazwa} - Dodawanie ogłoszenia
+            </ui:define>
+
+            <ui:define name="box">  
+               <h1>Dodaj ogłoszenie</h1>
+		<br></br>
+		<h:form enctype="multipart/form-data">
+			KATEGORIA<br></br>
+			<h:selectOneMenu value="#{ogloszeniaController.current.kategoria}">
+			  <f:selectItems value="#{ogloszeniaController.kat.kat_list}" var="c"
+   			itemLabel="#{c.nazwa}" itemValue="#{c.id}" />
+			  </h:selectOneMenu> 
+			<br></br>
+			TYTUŁ<br></br>
+			<h:inputText value="#{ogloszeniaController.current.tytul}" maxlength="32" /> 
+			<br></br>
+			TREŚĆ<br></br>
+			<h:inputTextarea rows="5" cols="80" value="#{ogloszeniaController.current.tresc}" maxlength="1024" /> 
+			<br></br>
+			CENA<br></br>
+			<h:inputText value="#{ogloszeniaController.current.cena}" maxlength="32" /> 
+			<br></br>
+			EMAIL<br></br>
+			<h:inputText value="#{ogloszeniaController.current.email}" maxlength="32" /> 
+			<br></br>
+			TELEFON<br></br>
+			<h:inputText value="#{ogloszeniaController.current.telefon}" maxlength="12" /> 
+			<br></br>
+			MIASTO<br></br>
+			<h:inputText value="#{ogloszeniaController.current.miasto}" maxlength="32" /> 
+			<br></br>
+			KOD POCZTOWY<br></br>
+			<h:inputText value="#{ogloszeniaController.current.kodPocztowy}" maxlength="6" /> 
+			<br></br>
+			ULICA<br></br>
+			<h:inputText value="#{ogloszeniaController.current.ulica}" maxlength="64" /> 
+			
+			<br></br>
+			<br></br>
+			<h1>Pliki</h1>
+			<br/>
+			<h:inputFile value="#{ogloszeniaController.plik1}" />
+			<h:inputText value="#{ogloszeniaController.opis1}" maxlength="32" /> 
+			<br/>
+			<h:inputFile value="#{ogloszeniaController.plik2}" />
+			<h:inputText value="#{ogloszeniaController.opis2}" maxlength="32" /> 
+			<br/>
+			
+			<h:commandButton value="Dodaj" action="#{ogloszeniaController.dodaj}" /> 
+			</h:form>   
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

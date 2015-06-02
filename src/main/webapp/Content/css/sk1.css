@@ -1,0 +1,98 @@
+body {
+    background-image: url("t3.jpg");
+}
+
+h1 {
+    color: #1b0376;
+}
+
+td
+{
+	padding-right:10px;
+	padding-left:10px;
+}
+
+.ogloszenia td,tr,thead *
+{
+	border:0px;
+}
+
+table td,tr thead *{
+	border:1px solid;
+}
+pre{
+	font-size:20px;
+    font-family:"Times New Roman";
+}
+#content{
+	position:absolute;
+	top:100px;
+	left:10%;
+	width:80%;
+	padding-bottom:40px;
+}
+
+#left{
+	padding-left:10%;
+}
+.notatki *{
+	border-top:0px;
+	padding-top:10px;
+}
+
+.zdjecia *
+{
+	border:0px;
+}
+
+.right{
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+
+#przycisky{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+}
+.top-btn{
+	-moz-box-shadow:inset 0px 34px 0px -15px #42368c;
+	-webkit-box-shadow:inset 0px 34px 0px -15px #42368c;
+	box-shadow:inset 0px 34px 0px -15px #42368c;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #190b5e), color-stop(1, #514085));
+	background:-moz-linear-gradient(top, #190b5e 5%, #514085 100%);
+	background:-webkit-linear-gradient(top, #190b5e 5%, #514085 100%);
+	background:-o-linear-gradient(top, #190b5e 5%, #514085 100%);
+	background:-ms-linear-gradient(top, #190b5e 5%, #514085 100%);
+	background:linear-gradient(to bottom, #190b5e 5%, #514085 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#190b5e', endColorstr='#514085',GradientType=0);
+	background-color:#190b5e;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #140657;
+}
+.top-btn:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #514085), color-stop(1, #190b5e));
+	background:-moz-linear-gradient(top, #514085 5%, #190b5e 100%);
+	background:-webkit-linear-gradient(top, #514085 5%, #190b5e 100%);
+	background:-o-linear-gradient(top, #514085 5%, #190b5e 100%);
+	background:-ms-linear-gradient(top, #514085 5%, #190b5e 100%);
+	background:linear-gradient(to bottom, #514085 5%, #190b5e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#514085', endColorstr='#190b5e',GradientType=0);
+	background-color:#514085;
+}
+.top-btn:active {
+	position:relative;
+	top:1px;
+}
+	
+}

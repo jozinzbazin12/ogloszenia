@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                  #{info.nazwa} - Słowa zakazane
+            </ui:define>
+
+            <ui:define name="box">
+              <h1>Panel skarg</h1>
+		<br/>
+		<h:form>
+		 <h:dataTable class="notatki" value="#{slowaController.data}" var="item" rules="all" >
+     				 <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Slowo"/>
+                        </f:facet>
+                            <h:outputText value="#{item.slowo}"/>
+                    </h:column>
+        
+                      <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Usuń"/>
+                        </f:facet>
+                        <h:commandButton action="#{slowaController.usun}" value="Usuń"/>          
+                    </h:column>
+                </h:dataTable>
+                
+                <br/><h1>Dodaj nowe</h1><br/>
+                <h:inputText value="#{slowaController.slowo}"/>
+                <h:commandButton value="Dodaj" action="#{slowaController.dodaj}"  />
+		</h:form>
+		
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

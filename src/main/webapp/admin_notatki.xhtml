@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                  #{info.nazwa} - Notatki
+            </ui:define>
+
+            <ui:define name="box">
+              <h1>Panel skarg</h1>
+		<br/>
+		<h:form>
+		 <h:dataTable class="notatki" value="#{notatkiController.data}" var="item" rules="all" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                    </h:column>
+     				
+     				 <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Treść"/>
+                        </f:facet>
+                            <h:outputText value="#{item.tresc}"/>
+                    </h:column>
+        
+                      <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Usuń"/>
+                        </f:facet>
+                        <h:commandButton action="#{notatkiController.usun}" value="Usuń"/>          
+                    </h:column>
+                </h:dataTable>
+                
+                <br/><h1>Dodaj nową</h1><br/>
+                <h:inputTextarea value="#{notatkiController.tresc}" cols="80" rows="5" maxlength="256"/>
+                <h:commandButton value="Dodaj" action="#{notatkiController.dodaj}"  />
+		</h:form>
+		
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

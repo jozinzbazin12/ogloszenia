@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                  #{info.nazwa} - Edycja kont
+            </ui:define>
+
+            <ui:define name="box">
+              <h1>Panel edycji kont</h1>
+		<br/>
+		<h:form>
+              <h:outputText value="Login"/>
+                        
+               <h:inputText value="#{registerController.current.login}"/>
+                <br/>
+               <h:outputText value="Hasło"/>
+                
+                <h:inputText value="#{registerController.current.haslo}"/>
+                 <br/>
+                <h:outputText value="Email"/>
+                        
+                <h:inputText value="#{registerController.current.email}"/>
+                 <br/>
+                 <h:outputText value="Telefon"/>
+                 
+                 <h:inputText value="#{registerController.current.telefon}"/>
+                   <br/>
+                 <h:outputText value="Miasto"/>
+                  
+                 <h:inputText value="#{registerController.current.miasto}"/>
+                  <br/>
+                 <h:outputText value="Kod pocztowy"/>
+                 
+                  <h:inputText value="#{registerController.current.kodPocztowy}"/>
+                   <br/>
+                  <h:outputText value="Ulica"/>
+                   
+                   <h:inputText value="#{registerController.current.ulica}"/>
+    <br/>
+     <br/>
+         			<h:commandButton action="#{registerController.zapisz}" value="Zapisz"/>          
+
+		</h:form>
+		
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                #{info.nazwa} - Przeglądanie ogłoszeń
+            </ui:define>
+
+            <ui:define name="box">
+            <h:form>
+            Fraza
+            <h:inputText value="#{ogloszeniaController.wybfraza}"/><br></br>
+            Miasto
+            <h:inputText value="#{ogloszeniaController.wybmiasto}"/><br></br>
+            KATEGORIA<br></br>
+			<h:selectOneMenu value="#{ogloszeniaController.wybkategoria}">
+			  <f:selectItems value="#{ogloszeniaController.kat.kat_list}" var="c" itemLabel="#{c.nazwa}" itemValue="#{c.id}" />
+			  </h:selectOneMenu> 
+			<br></br>
+			 <h:commandButton action="#{ogloszeniaController.szukaj}" value="Szukaj"/>
+			 <br></br><br></br>
+                 
+	             <h:dataTable class="ogloszenia" value="#{ogloszeniaController.data}" var="item" rules="all" >
+	                  <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tytuł"/>
+                        </f:facet>
+                           <h:commandLink action="#{ogloszeniaController.prepareView}" value="#{item.tytul}"/>
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Miasto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.miasto}"/>
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Kategoria"/>
+                        </f:facet>
+                        <h:outputText value="#{item.kategoria2}"/>
+                    </h:column>
+                </h:dataTable>
+                  <h:commandLink action="#{ogloszeniaController.previous}" value="Wstecz  " rendered="#{ogloszeniaController.hasPreviousPage}"/>
+                  <h:outputText value="     "/> 
+                <h:commandLink action="#{ogloszeniaController.next}" value="Dalej" rendered="#{ogloszeniaController.hasNextPage}"/>
+                
+             </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

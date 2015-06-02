@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="title">
+                #{info.nazwa} - Rejestracja
+            </ui:define>
+
+        <ui:define name="box">	
+		<h1>Rejestracja</h1>
+		<br></br>
+		<h:form>
+			LOGIN<br></br>
+			<h:inputText value="#{registerController.current.login}" maxlength="32"/> 
+			<br></br>
+			HASLO<br></br>
+			<h:inputSecret value="#{registerController.current.haslo}" maxlength="32" /> 
+			<br></br>
+			POWTÓRZ HASŁO<br></br>
+			<h:inputSecret value="#{registerController.haslo}" maxlength="32" /> 
+			<br></br>
+			EMAIL<br></br>
+			<h:inputText value="#{registerController.current.email}" maxlength="32" /> 
+			<br></br>
+			TELEFON<br></br>
+			<h:inputText value="#{registerController.current.telefon}" maxlength="12" /> 
+			<br></br>
+			MIASTO<br></br>
+			<h:inputText value="#{registerController.current.miasto}" maxlength="32" /> 
+			<br></br>
+			KOD POCZTOWY<br></br>
+			<h:inputText value="#{registerController.current.kodPocztowy}" maxlength="6" /> 
+			<br></br>
+			ULICA<br></br>
+			<h:inputText value="#{registerController.current.ulica}" maxlength="64" /> 
+			
+			<br></br>
+			<br></br>
+			<h:commandButton value="Rejestruj" action="#{registerController.rejestracja}" /> 
+			</h:form>              
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
