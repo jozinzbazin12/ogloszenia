@@ -17,7 +17,7 @@ public class Takietam implements Serializable {
 	}
 
 	public Takietam() {
-		nazwa = "Serwis Og³oszeniowy";
+		nazwa = "Serwis Og³oszeniowy ";
 	}
 
 }
