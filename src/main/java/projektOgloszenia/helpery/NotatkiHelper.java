@@ -4,15 +4,22 @@
  */
 package projektOgloszenia.helpery;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.NotatkaDao;
 import projektOgloszenia.models.Notatka;
 
-public class NotatkiHelper {
-	@EJB
+@Named
+@ApplicationScoped
+public class NotatkiHelper implements Serializable{
+
+	private static final long serialVersionUID = 794072425918695403L;
+	@Inject
 	private NotatkaDao notatkaDao;
 
 	public String getTresc(int id) {

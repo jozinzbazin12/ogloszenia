@@ -18,8 +18,9 @@ public class SlowaController implements Serializable{
 
 	private static final long serialVersionUID = -7450395269684097480L;
 	private String slowo;
-	DataModel<Slowo> data;
-	SlowaHelper helper;
+	private DataModel<Slowo> data;
+	@Inject
+	private SlowaHelper helper;
 	private Slowo current;
 	@Inject
 	private User usr;
@@ -43,7 +44,6 @@ public class SlowaController implements Serializable{
 	}
 
 	public SlowaController() {
-		helper = new SlowaHelper();
 	}
 
 	public String getSlowo() {

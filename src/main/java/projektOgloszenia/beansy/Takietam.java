@@ -20,7 +20,7 @@ public class Takietam implements Serializable {
 
 	public Takietam() {
 		nazwa = "Serwis Og³oszeniowy ";
-
+		webPath = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
 	}
 
 	public String getWebPath() {

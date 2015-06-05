@@ -18,6 +18,7 @@ public class UserController implements Serializable{
 	private KontoDao kontoDao;
 
 	public Konto loguj(String login, String haslo) {
+		System.out.println("\ndddudpa\n "+kontoDao);
 		Konto k = kontoDao.findById(login);
 		if (k.getHaslo().equals(haslo))
 			return k;

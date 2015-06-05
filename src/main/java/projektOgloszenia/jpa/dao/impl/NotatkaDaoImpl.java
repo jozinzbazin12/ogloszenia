@@ -1,11 +1,21 @@
 package projektOgloszenia.jpa.dao.impl;
 
-import javax.ejb.Stateless;
+import java.io.Serializable;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.NotatkaDao;
 import projektOgloszenia.models.Notatka;
-@Stateless
-public class NotatkaDaoImpl extends GenericJpaDao<Notatka, Integer> implements NotatkaDao {
+@Named
+@ApplicationScoped
+public class NotatkaDaoImpl extends GenericJpaDao<Notatka, Integer> implements NotatkaDao, Serializable {
 
+
+	private static final long serialVersionUID = -6725701484559850279L;
+
+	public NotatkaDaoImpl() {
+		super(Notatka.class);
+	}
 	
 }

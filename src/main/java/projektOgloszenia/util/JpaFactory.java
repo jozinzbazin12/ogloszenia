@@ -12,7 +12,7 @@ public class JpaFactory {
     private EntityManagerFactory emf;
 
     private JpaFactory() {
-        emf = Persistence.createEntityManagerFactory("EastRobo");
+        emf = Persistence.createEntityManagerFactory("Ogloszenia");
     }
 
     public static JpaFactory getInstanance() {

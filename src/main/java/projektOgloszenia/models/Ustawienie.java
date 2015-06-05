@@ -1,5 +1,6 @@
 package projektOgloszenia.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,6 +9,7 @@ public class Ustawienie implements java.io.Serializable {
 
 	private static final long serialVersionUID = 5432574963000836657L;
 	@Id
+	@Column(length=20)
 	private String nazwa;
 	private int wartosc;
 

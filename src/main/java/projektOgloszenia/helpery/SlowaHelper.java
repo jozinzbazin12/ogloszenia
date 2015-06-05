@@ -1,15 +1,21 @@
 package projektOgloszenia.helpery;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.SlowoDao;
 import projektOgloszenia.models.Slowo;
 
-public class SlowaHelper {
+@Named
+@ApplicationScoped
+public class SlowaHelper implements Serializable{
 
-	@EJB
+	private static final long serialVersionUID = 486023682187539120L;
+	@Inject
 	private SlowoDao slowoDao;
 
 	public void usun(Slowo s) {

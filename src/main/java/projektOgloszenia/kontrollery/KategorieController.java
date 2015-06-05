@@ -20,11 +20,12 @@ import projektOgloszenia.models.Kategoria;
 public class KategorieController implements Serializable{
 	
 	private static final long serialVersionUID = -6590221640560781844L;
-	List<Kategoria> kat_list;
+	private List<Kategoria> kat_list;
 	private DataModel<Kategoria> data;
 	private String nazwa;
 	private int ojciec;
 	private Kategoria current;
+	@Inject
 	private KategorieHelper helper;
 
 	@Inject
@@ -39,7 +40,6 @@ public class KategorieController implements Serializable{
 	}
 
 	public KategorieController() {
-		helper = new KategorieHelper();
 	}
 
 	public void dodaj() {

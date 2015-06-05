@@ -1,15 +1,21 @@
 package projektOgloszenia.helpery;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.KategoriaDao;
 import projektOgloszenia.models.Kategoria;
 
-public class KategorieHelper {
+@Named
+@ApplicationScoped
+public class KategorieHelper implements Serializable{
 
-	@EJB
+	private static final long serialVersionUID = -7197392888867684805L;
+	@Inject
 	private KategoriaDao kategoriaDao;
 
 	public void add(Kategoria k) {

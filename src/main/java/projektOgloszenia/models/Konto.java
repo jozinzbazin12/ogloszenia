@@ -2,6 +2,7 @@ package projektOgloszenia.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,6 +12,7 @@ public class Konto implements Serializable {
 	private static final long serialVersionUID = 7789613374619671628L;
 	
 	@Id
+	@Column(length=60)
 	private String login;
 	private String haslo;
 	private String email;

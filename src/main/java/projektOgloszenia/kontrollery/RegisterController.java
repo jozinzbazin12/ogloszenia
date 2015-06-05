@@ -19,7 +19,8 @@ public class RegisterController implements Serializable {
 	private static final long serialVersionUID = 5985792256146994765L;
 	private Konto current;
 	private String haslo;
-	DataModel<Konto> data;
+	private DataModel<Konto> data;
+	@Inject
 	private RegisterHelper helper;
 	@Inject
 	private User usr;
@@ -105,7 +106,6 @@ public class RegisterController implements Serializable {
 	}
 
 	public RegisterController() {
-		helper = new RegisterHelper();
 	}
 
 	public User getUsr() {

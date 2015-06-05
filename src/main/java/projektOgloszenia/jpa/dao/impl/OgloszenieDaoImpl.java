@@ -1,16 +1,21 @@
 package projektOgloszenia.jpa.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import projektOgloszenia.jpa.dao.OgloszenieDao;
 import projektOgloszenia.models.Ogloszenie;
 
-@Stateless
-public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implements OgloszenieDao {
+@Named
+@ApplicationScoped
+public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implements OgloszenieDao, Serializable {
+
+	private static final long serialVersionUID = -1554759164624362309L;
 
 	@Override
 	public List<Ogloszenie> findAllUserOgloszenie(String user) {
@@ -18,6 +23,10 @@ public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implem
 		TypedQuery<Ogloszenie> query = em.createQuery("SELECT o from Ogloszenie o where o.user.login=" + user, Ogloszenie.class);
 		em.close();
 		return query.getResultList();
+	}
+
+	public OgloszenieDaoImpl() {
+		super(Ogloszenie.class);
 	}
 
 }

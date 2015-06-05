@@ -1,8 +1,10 @@
 package projektOgloszenia.jpa.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -10,8 +12,12 @@ import projektOgloszenia.jpa.dao.ImageDao;
 import projektOgloszenia.models.Image;
 import projektOgloszenia.models.Ogloszenie;
 
-@Stateless
-public class ImageDaoImpl extends GenericJpaDao<Image, Integer> implements ImageDao {
+@Named
+@ApplicationScoped
+public class ImageDaoImpl extends GenericJpaDao<Image, Integer> implements ImageDao, Serializable {
+
+	private static final long serialVersionUID = -6948105639773035438L;
+
 
 	@Override
 	public List<Image> findImagesByOgloszenie(Ogloszenie o) {
@@ -22,4 +28,8 @@ public class ImageDaoImpl extends GenericJpaDao<Image, Integer> implements Image
 
 	}
 
+
+	public ImageDaoImpl() {
+		super(Image.class);
+	}
 }

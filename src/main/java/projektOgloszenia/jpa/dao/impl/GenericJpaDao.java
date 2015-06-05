@@ -1,7 +1,5 @@
 package projektOgloszenia.jpa.dao.impl;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,16 +8,15 @@ import javax.persistence.Query;
 import projektOgloszenia.jpa.dao.GenericDao;
 import projektOgloszenia.util.JpaFactory;
 
-
 public abstract class GenericJpaDao<T, K> implements GenericDao<T, K> {
 
-	private final Class<T> type;
+	private Class<T> type = null;
 
-	@SuppressWarnings("unchecked")
+	public GenericJpaDao(Class<T> type) {
+		this.type = type;
+	}
+
 	public GenericJpaDao() {
-		Type t = getClass().getGenericSuperclass();
-		ParameterizedType pt = (ParameterizedType) t;
-		type = (Class<T>) pt.getActualTypeArguments()[0];
 	}
 
 	protected EntityManager getEntityManager() {
@@ -53,20 +50,23 @@ public abstract class GenericJpaDao<T, K> implements GenericDao<T, K> {
 	}
 
 	public T findById(K id) {
-		EntityManager em = getEntityManager();
-		T dto = em.find(type, id);
-		em.close();
-		return dto;
+		try {
+			EntityManager em = getEntityManager();
+			T dto = em.find(type, id);
+			System.out.println("\n\n--\n--\n    "+type+"\n-\n-\n");
+			em.close();
+			return dto;
+		} catch (Exception e) {
+		}
+		return null;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		EntityManager em = getEntityManager();
-		Query dto = em.createQuery("SELECT x from "+this.getClass().toString(), this.getClass());
+		Query dto = em.createQuery("SELECT x from " + type.getClass().toString(), type.getClass());
 		em.close();
 		return dto.getResultList();
 	}
-	
-	
+
 }

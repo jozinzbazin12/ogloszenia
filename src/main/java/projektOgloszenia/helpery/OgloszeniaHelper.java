@@ -1,10 +1,13 @@
 package projektOgloszenia.helpery;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.OgloszenieDao;
 import projektOgloszenia.jpa.dao.WarnDao;
@@ -13,11 +16,14 @@ import projektOgloszenia.models.Ogloszenie;
 import projektOgloszenia.models.Warn;
 import projektOgloszenia.util.JpaFactory;
 
-public class OgloszeniaHelper {
+@Named
+@ApplicationScoped
+public class OgloszeniaHelper implements Serializable {
 
-	@EJB
+	private static final long serialVersionUID = 4622473872387122079L;
+	@Inject
 	private OgloszenieDao ogloszenieDao;
-	@EJB
+	@Inject
 	private WarnDao warnDao;
 
 	public void add(Ogloszenie o) {
@@ -51,8 +57,7 @@ public class OgloszeniaHelper {
 			while (!s.empty())
 				pytanie += " or o.kategoria=" + s.pop() + " ";
 		}
-		List<Ogloszenie> filmList=JpaFactory.getEntityManager().createQuery(pytanie, Ogloszenie.class).getResultList();
-		
+		List<Ogloszenie> filmList = JpaFactory.getEntityManager().createQuery(pytanie, Ogloszenie.class).getResultList();
 
 		if (filmList != null)
 			for (Ogloszenie i : filmList) {
@@ -77,12 +82,12 @@ public class OgloszeniaHelper {
 		return ogloszenieDao.findAllUserOgloszenie(login);
 	}
 
-	public void warn(Warn w){
+	public void warn(Warn w) {
 		warnDao.save(w);
 	}
 
 	public void update(Ogloszenie o) {
-	ogloszenieDao.save(o);
+		ogloszenieDao.save(o);
 	}
 
 	public void delete(Ogloszenie o) {

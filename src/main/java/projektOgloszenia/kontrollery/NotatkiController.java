@@ -17,16 +17,13 @@ import projektOgloszenia.models.Notatka;
 public class NotatkiController implements Serializable{
 
 	private static final long serialVersionUID = 2606582761016486844L;
-	DataModel<Notatka> data;
-	NotatkiHelper helper;
+	private DataModel<Notatka> data;
+	@Inject
+	private NotatkiHelper helper;
 	private String tresc;
 	private Notatka current;
 	@Inject
 	private User usr;
-
-	public NotatkiController() {
-		helper = new NotatkiHelper();
-	}
 
 	public void usun() {
 		current = getData().getRowData();
@@ -42,7 +39,6 @@ public class NotatkiController implements Serializable{
 	}
 
 	public NotatkiController(int startId, int endId) {
-		helper = new NotatkiHelper();
 	}
 
 	public Notatka getSelected() {

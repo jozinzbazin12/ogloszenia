@@ -2,6 +2,7 @@ package projektOgloszenia.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,6 +11,7 @@ public class Slowo implements Serializable {
 
 	private static final long serialVersionUID = 6326966183468762840L;
 	@Id
+	@Column(length=40)
 	private String slowo;
 
 	public Slowo() {

@@ -1,19 +1,26 @@
 package projektOgloszenia.helpery;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import projektOgloszenia.jpa.dao.OgloszenieDao;
 import projektOgloszenia.jpa.dao.WarnDao;
 import projektOgloszenia.models.Warn;
 
-public class SkargiHelper {
+@Named
+@ApplicationScoped
+public class SkargiHelper implements Serializable {
 
-	@EJB
+	private static final long serialVersionUID = -8976909100251735875L;
+
+	@Inject
 	private WarnDao warnDao;
 
-	@EJB
+	@Inject
 	private OgloszenieDao ogloszenieDao;
 
 	public List<Warn> getWarny() {

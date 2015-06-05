@@ -18,7 +18,8 @@ public class SkargiController implements Serializable{
 
 	private static final long serialVersionUID = -197856375422387184L;
 	private Warn current;
-	DataModel<Warn> data;
+	private DataModel<Warn> data;
+	@Inject
 	private SkargiHelper helper;
 	@Inject
 	private User usr;
@@ -33,11 +34,7 @@ public class SkargiController implements Serializable{
 		data = null;
 		current = null;
 	}
-
-	public SkargiController() {
-		helper = new SkargiHelper();
-	}
-
+	
 	public void usun() {
 		current = getData().getRowData();
 		usr.setResponse("Pomyślnie usunąłeś skargę");

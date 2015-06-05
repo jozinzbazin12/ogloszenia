@@ -32,7 +32,9 @@ public class OgloszeniaController implements Serializable{
 	private List<Ogloszenie> pom;
 	private DataModel<Ogloszenie> wlasne;
 	private DataModel<Image> img;
+	@Inject
 	private OgloszeniaHelper helper;
+	@Inject
 	private ImagesHelper ihelper;
 	private String warn;
 	private Part plik1;
@@ -84,8 +86,6 @@ public class OgloszeniaController implements Serializable{
 	}
 
 	public OgloszeniaController() {
-		helper = new OgloszeniaHelper();
-		ihelper = new ImagesHelper();
 		strona = 0;
 		wybkategoria = -1;
 		wybmiasto = "";
