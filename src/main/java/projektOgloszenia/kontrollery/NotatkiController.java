@@ -14,7 +14,7 @@ import projektOgloszenia.models.Notatka;
 
 @Named("notatkiController")
 @SessionScoped
-public class NotatkiController implements Serializable{
+public class NotatkiController implements Serializable {
 
 	private static final long serialVersionUID = 2606582761016486844L;
 	private DataModel<Notatka> data;
@@ -27,7 +27,7 @@ public class NotatkiController implements Serializable{
 
 	public void usun() {
 		current = getData().getRowData();
-		usr.setResponse("PomyÅ›lnie usunÄ…Å‚eÅ› notatkÄ™");
+		usr.setResponse("Pomyœlnie usun¹³eœ notatkê");
 		helper.usun(current);
 		recreate();
 	}
@@ -39,6 +39,9 @@ public class NotatkiController implements Serializable{
 	}
 
 	public NotatkiController(int startId, int endId) {
+	}
+
+	public NotatkiController() {
 	}
 
 	public Notatka getSelected() {

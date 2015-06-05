@@ -62,10 +62,14 @@ public abstract class GenericJpaDao<T, K> implements GenericDao<T, K> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		EntityManager em = getEntityManager();
-		Query dto = em.createQuery("SELECT x from " + type.getClass().toString(), type.getClass());
-		em.close();
-		return dto.getResultList();
+		try {
+			EntityManager em = getEntityManager();
+			Query dto = em.createQuery("SELECT x from " + type.getClass().toString(), type.getClass());
+			em.close();
+			return dto.getResultList();
+		} catch (Exception e) {
+		}
+		return null;
 	}
 
 }

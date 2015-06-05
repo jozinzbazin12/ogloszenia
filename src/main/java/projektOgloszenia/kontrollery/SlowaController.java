@@ -13,7 +13,7 @@ import projektOgloszenia.helpery.SlowaHelper;
 import projektOgloszenia.models.Slowo;
 
 @SessionScoped
-@Named("SlowaController")
+@Named("slowaController")
 public class SlowaController implements Serializable{
 
 	private static final long serialVersionUID = -7450395269684097480L;

@@ -11,7 +11,7 @@ import projektOgloszenia.models.Konto;
 
 @Named("user")
 @SessionScoped
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = -5529031154390935730L;
 	@Inject
@@ -24,33 +24,32 @@ public class User implements Serializable{
 	private Konto user;
 	private int ile;
 	private int stronicowanie;
-	public void zmienskorke()
-	{
+	private boolean admin;
+
+	public void zmienskorke() {
 		user.setSkorka(skorka);
 		ctrl.update(user);
 	}
-	
-	public void zmienilosc()
-	{
+
+	public void zmienilosc() {
 		user.setMaxPozycji(ile);
 		ctrl.update(user);
 	}
+
 	public String getPassword() {
 		return password;
 	}
 
 	public String getResponse() {
-		String a=response;
-		response=null;
+		String a = response;
+		response = null;
 		return a;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-	private boolean admin;
 	public boolean isLogged() {
 		return logged;
 	}
@@ -63,50 +62,46 @@ public class User implements Serializable{
 		return nick;
 	}
 
-
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-
 
 	public String getSkorka() {
 		return skorka;
 	}
 
-	public String login()
-	{
-		Konto res=ctrl.loguj(nick,password);
-		if(res!=null)
-		{
-			logged=true;
-			ile=res.getMaxPozycji();
-			response="Pomyœlnie zalogowano";
-			user=res;
-			skorka=user.getSkorka();
-			if(ctrl.czyadmin(nick)) admin=true;;
+	public String login() {
+		Konto res = ctrl.loguj(nick, password);
+		if (res != null) {
+			logged = true;
+			ile = res.getMaxPozycji();
+			response = "Pomyœlnie zalogowano";
+			user = res;
+			skorka = user.getSkorka();
+			if (ctrl.czyadmin(nick))
+				admin = true;
 			return "home";
 		}
-		
-		response="B³êdne dane logowania";
+
+		response = "B³êdne dane logowania";
 		return "login";
-		
+
 	}
-	
-	public String logout()
-	{
+
+	public String logout() {
 		zeruj();
 		return "home";
 	}
-	private void zeruj()
-	{
-		nick=null;
-		logged=false;
-		admin=false;
-		skorka="sk1";
-		ile=20;
+
+	private void zeruj() {
+		nick = null;
+		logged = false;
+		admin = false;
+		skorka = "sk1";
+		ile = 20;
 	}
-	public User()
-	{
+
+	public User() {
 		zeruj();
 	}
 
@@ -133,5 +128,5 @@ public class User implements Serializable{
 	public int getStronicowanie() {
 		return stronicowanie;
 	}
-	
+
 }

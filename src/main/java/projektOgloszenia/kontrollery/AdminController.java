@@ -44,7 +44,5 @@ public class AdminController implements Serializable {
 		ustawienieDao.save(xd2);
 	}
 	public AdminController() {
-		if(ustawienieDao.findById(ROZMIAR)==null) ustawienieDao.save(new Ustawienie(ROZMIAR, 1024));
-		if(ustawienieDao.findById(ILE_PLIKOW)==null) ustawienieDao.save(new Ustawienie(ILE_PLIKOW, 3));
 	}
 }
