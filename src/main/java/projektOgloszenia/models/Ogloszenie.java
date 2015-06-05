@@ -28,7 +28,7 @@ public class Ogloszenie implements Serializable {
 	private String kodPocztowy;
 	private String ulica;
 	private String cena;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Konto user;
 	private int wyswietlen;
 	@ManyToOne
@@ -36,17 +36,6 @@ public class Ogloszenie implements Serializable {
 	private String kategoria2;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Image> obrazki;
-
-	@ManyToOne
-	private Konto konto;
-
-	public Konto getKonto() {
-		return konto;
-	}
-
-	public void setKonto(Konto konto) {
-		this.konto = konto;
-	}
 
 	public Ogloszenie() {
 		wyswietlen = 0;

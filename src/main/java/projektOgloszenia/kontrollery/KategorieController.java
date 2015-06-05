@@ -17,8 +17,8 @@ import projektOgloszenia.models.Kategoria;
 
 @SessionScoped
 @Named("kategorieController")
-public class KategorieController implements Serializable{
-	
+public class KategorieController implements Serializable {
+
 	private static final long serialVersionUID = -6590221640560781844L;
 	private List<Kategoria> kat_list;
 	private DataModel<Kategoria> data;
@@ -44,14 +44,13 @@ public class KategorieController implements Serializable{
 
 	public void dodaj() {
 		Kategoria ociec = kategoriaDao.findById(ojciec);
-		if (ociec != null) {
+		if (ociec != null || ojciec == 0) {
 			Kategoria a = new Kategoria(nazwa, ociec);
 
 			helper.add(a);
 			usr.setResponse("Pomyślnie dodałeś kategorie");
 			recreate();
-		}
-		else
+		} else
 			usr.setResponse("Niepoprawne dane");
 	}
 
@@ -77,15 +76,22 @@ public class KategorieController implements Serializable{
 		String nazwa;
 		int ociec_id;
 		kat_list = new ArrayList<Kategoria>();
-		if(kategorie==null) return;
+		if (kategorie == null)
+			return;
 		for (int i = 0; i < kategorie.size(); i++) {
 			nazwa = "";
-			ociec = kategorie.get(i).getOjciec().getId();
-			ociec_id = kategorie.get(i).getOjciec().getId();
+			Kategoria stary = kategorie.get(i).getOjciec();
+			if (stary != null)
+				ociec = stary.getId();
+			else
+				ociec = 0;
+			Kategoria kapusta = kategorie.get(i).getOjciec();
+			ociec_id = kapusta != null ? kapusta.getId() : 0;
 			while (ociec != 0) {
 				for (Kategoria j : kategorie) {
 					if (j.getId() == ociec) {
-						ociec = j.getOjciec().getId();
+						Kategoria zgred = j.getOjciec();
+						ociec = zgred != null ? zgred.getId() : 0;
 						nazwa += "-";
 						break;
 					}
@@ -113,8 +119,7 @@ public class KategorieController implements Serializable{
 	}
 
 	public List<Kategoria> getKat_list() {
-		if (kat_list == null)
-			daj_kategorie();
+		daj_kategorie();
 		return kat_list;
 	}
 

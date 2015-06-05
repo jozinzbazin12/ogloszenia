@@ -64,7 +64,6 @@ public abstract class GenericJpaDao<T, K> implements GenericDao<T, K> {
 	public List<T> findAll() {
 		try {
 			EntityManager em = getEntityManager();
-			System.out.println("SELECT x from " + type.getSimpleName()+" x");
 			Query dto = em.createQuery("SELECT x from " + type.getSimpleName()+" x", type);
 			List<T> resultList = dto.getResultList();
 			em.close(); 

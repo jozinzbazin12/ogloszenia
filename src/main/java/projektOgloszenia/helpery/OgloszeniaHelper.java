@@ -12,6 +12,7 @@ import javax.inject.Named;
 import projektOgloszenia.jpa.dao.OgloszenieDao;
 import projektOgloszenia.jpa.dao.WarnDao;
 import projektOgloszenia.models.Kategoria;
+import projektOgloszenia.models.Konto;
 import projektOgloszenia.models.Ogloszenie;
 import projektOgloszenia.models.Warn;
 
@@ -77,8 +78,8 @@ public class OgloszeniaHelper implements Serializable {
 		return lista2;
 	}
 
-	public List<Ogloszenie> getOgloszenia(String login) {
-		return ogloszenieDao.findAllUserOgloszenie(login);
+	public List<Ogloszenie> getOgloszenia(Konto konto) {
+		return ogloszenieDao.findAllUserOgloszenie(konto);
 	}
 
 	public void warn(Warn w) {

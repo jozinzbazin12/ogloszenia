@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import projektOgloszenia.jpa.dao.OgloszenieDao;
+import projektOgloszenia.models.Konto;
 import projektOgloszenia.models.Ogloszenie;
 
 @Named
@@ -18,10 +19,12 @@ public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implem
 	private static final long serialVersionUID = -1554759164624362309L;
 
 	@Override
-	public List<Ogloszenie> findAllUserOgloszenie(String user) {
+	public List<Ogloszenie> findAllUserOgloszenie(Konto user) {
 		EntityManager em = getEntityManager();
-		TypedQuery<Ogloszenie> query = em.createQuery("SELECT o from Ogloszenie o where o.user.login=" + user, Ogloszenie.class);
-		return query.getResultList();
+		TypedQuery<Ogloszenie> query = em.createQuery("SELECT o from Ogloszenie o where o.user.login=" + user.getLogin(), Ogloszenie.class);
+		List<Ogloszenie> resultList = query.getResultList();
+		em.close();
+		return resultList;
 	}
 
 	public OgloszenieDaoImpl() {
@@ -31,8 +34,11 @@ public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implem
 	@Override
 	public List<Ogloszenie> createQuery(String pytanie) {
 		EntityManager em = getEntityManager();
+		System.out.println(pytanie);
 		TypedQuery<Ogloszenie> query = em.createQuery(pytanie, Ogloszenie.class);
-		return query.getResultList();
+		List<Ogloszenie> resultList = query.getResultList();
+		em.close();
+		return resultList;
 	}
 
 }

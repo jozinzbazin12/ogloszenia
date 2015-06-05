@@ -15,16 +15,16 @@ import javax.servlet.http.Part;
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.ImagesHelper;
 import projektOgloszenia.helpery.OgloszeniaHelper;
+import projektOgloszenia.jpa.dao.KategoriaDao;
 import projektOgloszenia.models.Image;
 import projektOgloszenia.models.Ogloszenie;
 import projektOgloszenia.models.Warn;
 import projektOgloszenia.util.Wulgaryzmorozpoznawacz;
 
-
 @SessionScoped
 @Named("ogloszeniaController")
 @MultipartConfig
-public class OgloszeniaController implements Serializable{
+public class OgloszeniaController implements Serializable {
 
 	private static final long serialVersionUID = 6567350708626777316L;
 	private Ogloszenie current;
@@ -32,6 +32,8 @@ public class OgloszeniaController implements Serializable{
 	private List<Ogloszenie> pom;
 	private DataModel<Ogloszenie> wlasne;
 	private DataModel<Image> img;
+	@Inject
+	private KategoriaDao kategoriaDao;
 	@Inject
 	private OgloszeniaHelper helper;
 	@Inject
@@ -52,7 +54,8 @@ public class OgloszeniaController implements Serializable{
 	private KategorieController kat;
 	private int size;
 
-	private Wulgaryzmorozpoznawacz wulgaryzmorozpoznawacz = new Wulgaryzmorozpoznawacz();
+	@Inject
+	private Wulgaryzmorozpoznawacz wulgaryzmorozpoznawacz;
 
 	public void next() {
 		strona++;
@@ -152,7 +155,7 @@ public class OgloszeniaController implements Serializable{
 
 	public DataModel<Ogloszenie> getWlasne() {
 		if (wlasne == null)
-			wlasne = new ListDataModel<Ogloszenie>(helper.getOgloszenia(usr.getNick()));
+			wlasne = new ListDataModel<Ogloszenie>(helper.getOgloszenia(usr.getUser()));
 		return wlasne;
 	}
 
@@ -182,7 +185,7 @@ public class OgloszeniaController implements Serializable{
 	}
 
 	public String sprawdz() {
-		if (current.getKategoria().getId() == -1) {
+		if (wybkategoria == -1) {
 			usr.setResponse("Wybierz kategorię!");
 			return "dodaj";
 		}
@@ -254,7 +257,7 @@ public class OgloszeniaController implements Serializable{
 		if (res != "") {
 			return "dodaj";
 		}
-
+		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		current.setUser(usr.getUser());
 		helper.add(current);
 

@@ -17,7 +17,7 @@
 		<br></br>
 		<h:form enctype="multipart/form-data">
 			KATEGORIA<br></br>
-			<h:selectOneMenu value="#{ogloszeniaController.current.kategoria}">
+			<h:selectOneMenu value="#{ogloszeniaController.wybkategoria}">
 			  <f:selectItems value="#{ogloszeniaController.kat.kat_list}" var="c"
    			itemLabel="#{c.nazwa}" itemValue="#{c.id}" />
 			  </h:selectOneMenu> 

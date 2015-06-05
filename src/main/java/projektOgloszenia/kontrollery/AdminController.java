@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import projektOgloszenia.beansy.User;
 import projektOgloszenia.jpa.dao.UstawienieDao;
 import projektOgloszenia.models.Ustawienie;
 
@@ -20,6 +21,9 @@ public class AdminController implements Serializable {
 	private int rozmiar;
 	@Inject
 	private UstawienieDao ustawienieDao;
+
+	@Inject
+	private User usr;
 
 	public int getPlikow() {
 		return ustawienieDao.findById(ILE_PLIKOW).getWartosc();
@@ -40,9 +44,11 @@ public class AdminController implements Serializable {
 	public void zmienpliki() {
 		Ustawienie xd = new Ustawienie(ILE_PLIKOW, plikow);
 		Ustawienie xd2 = new Ustawienie(ROZMIAR, rozmiar);
-		ustawienieDao.save(xd);
-		ustawienieDao.save(xd2);
+		ustawienieDao.update(xd);
+		ustawienieDao.update(xd2);
+		usr.setResponse("Zmieniono ustawienie");
 	}
+
 	public AdminController() {
 	}
 }
