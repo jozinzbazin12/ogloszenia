@@ -77,6 +77,7 @@ public class KategorieController implements Serializable{
 		String nazwa;
 		int ociec_id;
 		kat_list = new ArrayList<Kategoria>();
+		if(kategorie==null) return;
 		for (int i = 0; i < kategorie.size(); i++) {
 			nazwa = "";
 			ociec = kategorie.get(i).getOjciec().getId();

@@ -21,12 +21,18 @@ public class OgloszenieDaoImpl extends GenericJpaDao<Ogloszenie, Integer> implem
 	public List<Ogloszenie> findAllUserOgloszenie(String user) {
 		EntityManager em = getEntityManager();
 		TypedQuery<Ogloszenie> query = em.createQuery("SELECT o from Ogloszenie o where o.user.login=" + user, Ogloszenie.class);
-		em.close();
 		return query.getResultList();
 	}
 
 	public OgloszenieDaoImpl() {
 		super(Ogloszenie.class);
+	}
+
+	@Override
+	public List<Ogloszenie> createQuery(String pytanie) {
+		EntityManager em = getEntityManager();
+		TypedQuery<Ogloszenie> query = em.createQuery(pytanie, Ogloszenie.class);
+		return query.getResultList();
 	}
 
 }

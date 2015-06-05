@@ -32,7 +32,7 @@ public class SlowaController implements Serializable{
 
 	public void usun() {
 		current = getData().getRowData();
-		usr.setResponse("PomyÅ›lnie usunÄ…Å‚eÅ› notatkÄ™");
+		usr.setResponse("Pomyœlnie usun¹³eœ notatkê");
 		helper.usun(current);
 		recreate();
 	}

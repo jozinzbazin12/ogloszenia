@@ -14,7 +14,6 @@ import projektOgloszenia.jpa.dao.WarnDao;
 import projektOgloszenia.models.Kategoria;
 import projektOgloszenia.models.Ogloszenie;
 import projektOgloszenia.models.Warn;
-import projektOgloszenia.util.JpaFactory;
 
 @Named
 @ApplicationScoped
@@ -35,7 +34,7 @@ public class OgloszeniaHelper implements Serializable {
 	}
 
 	public List<Ogloszenie> getOgloszenia(int kategoria, String miasto, String fraza) {
-		String pytanie = "SELECT o from Ogloszenia o";
+		String pytanie = "SELECT o from Ogloszenie o";
 		List<Ogloszenie> lista2 = new ArrayList<Ogloszenie>();
 		if (kategoria != -1) {
 			pytanie += " where o.kategoria=" + kategoria;
@@ -54,10 +53,10 @@ public class OgloszeniaHelper implements Serializable {
 				} else
 					break;
 			} while (true);
-			while (!s.empty())
+			while (!s.empty()) 
 				pytanie += " or o.kategoria=" + s.pop() + " ";
 		}
-		List<Ogloszenie> filmList = JpaFactory.getEntityManager().createQuery(pytanie, Ogloszenie.class).getResultList();
+		List<Ogloszenie> filmList = ogloszenieDao.createQuery(pytanie);
 
 		if (filmList != null)
 			for (Ogloszenie i : filmList) {
