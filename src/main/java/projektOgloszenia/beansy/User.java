@@ -3,9 +3,10 @@ package projektOgloszenia.beansy;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import projektOgloszenia.kontrollery.UserController;
+import projektOgloszenia.helpery.UserHelper;
 import projektOgloszenia.models.Konto;
 
 @Named("user")
@@ -13,7 +14,8 @@ import projektOgloszenia.models.Konto;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -5529031154390935730L;
-	private UserController ctrl;
+	@Inject
+	private UserHelper ctrl;
 	private String nick;
 	private String response;
 	private String password;
@@ -78,14 +80,14 @@ public class User implements Serializable{
 		{
 			logged=true;
 			ile=res.getMaxPozycji();
-			response="PomyÅ›lnie zalogowano";
+			response="Pomyœlnie zalogowano";
 			user=res;
 			skorka=user.getSkorka();
 			if(ctrl.czyadmin(nick)) admin=true;;
 			return "home";
 		}
 		
-		response="BÅ‚Ä™dne dane logowania";
+		response="B³êdne dane logowania";
 		return "login";
 		
 	}
@@ -97,7 +99,6 @@ public class User implements Serializable{
 	}
 	private void zeruj()
 	{
-		ctrl=new UserController();
 		nick=null;
 		logged=false;
 		admin=false;

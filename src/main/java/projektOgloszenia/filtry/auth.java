@@ -30,7 +30,7 @@ public class auth implements Filter
      	User usr = (User ) session.getAttribute("user");
 			if(usr!=null && usr.isLogged() && ( uri.endsWith("rejestracja.xhtml") || uri.endsWith("login.xhtml")))
 			{
-				usr.setResponse("Ju≈º jeste≈õ zalogowany");
+				usr.setResponse("Juø jesteú zalogowany");
 				res.sendRedirect("home.xhtml");
 				return;
 			}

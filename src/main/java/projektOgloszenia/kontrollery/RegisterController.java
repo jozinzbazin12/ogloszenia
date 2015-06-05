@@ -38,7 +38,7 @@ public class RegisterController implements Serializable {
 
 	public String zapisz() {
 		helper.save(current);
-		usr.setResponse("Pomy≈õlnie edytowa≈Çe≈õ konto " + current.getLogin());
+		usr.setResponse("Pomyúlnie edytowa≥eú konto " + current.getLogin());
 		recreate();
 		return "admin_konta";
 	}
@@ -50,18 +50,18 @@ public class RegisterController implements Serializable {
 
 	public void usun() {
 		current = getData().getRowData();
-		usr.setResponse("Pomy≈õlnie usunƒÖ≈Çe≈õ konto " + current.getLogin());
+		usr.setResponse("Pomyúlnie usunπ≥eú konto " + current.getLogin());
 		helper.delete(current);
 		recreate();
 	}
 
 	public String rejestracja() {
 		if (current.getLogin() == null || helper.czyjest(current.getLogin())) {
-			usr.setResponse("Brak loginu, lub konto ju≈º istnieje");
+			usr.setResponse("Brak loginu, lub konto juø istnieje");
 			return "rejestracja";
 		}
 		if (current.getHaslo() == null || haslo == null || !haslo.equals(current.getHaslo())) {
-			usr.setResponse("Niepoprawne has≈Ça");
+			usr.setResponse("Niepoprawne has≥a");
 			return "rejestracja";
 		}
 		if (current.getEmail() == null) {
@@ -81,13 +81,13 @@ public class RegisterController implements Serializable {
 			return "rejestracja";
 		}
 		if (current.getUlica() == null) {
-			usr.setResponse("Podaj ulicƒô");
+			usr.setResponse("Podaj ulicÍ");
 			return "rejestracja";
 		}
 		helper.save(current);
 		recreate();
 		haslo = null;
-		usr.setResponse("Pomy≈õlnie za≈Ço≈ºy≈Çe≈õ konto");
+		usr.setResponse("Pomyúlnie za≥oøy≥es konto");
 		return "home";
 	}
 

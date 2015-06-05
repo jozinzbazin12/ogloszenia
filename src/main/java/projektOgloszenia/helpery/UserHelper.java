@@ -1,4 +1,4 @@
-package projektOgloszenia.kontrollery;
+package projektOgloszenia.helpery;
 
 import java.io.Serializable;
 
@@ -11,16 +11,15 @@ import projektOgloszenia.models.Konto;
 
 @SessionScoped
 @Named("userController")
-public class UserController implements Serializable{
+public class UserHelper implements Serializable{
 
 	private static final long serialVersionUID = -1272893030565136766L;
 	@Inject
 	private KontoDao kontoDao;
 
 	public Konto loguj(String login, String haslo) {
-		System.out.println("\ndddudpa\n "+kontoDao);
 		Konto k = kontoDao.findById(login);
-		if (k.getHaslo().equals(haslo))
+		if (k!=null && k.getHaslo().equals(haslo))
 			return k;
 		return null;
 	}

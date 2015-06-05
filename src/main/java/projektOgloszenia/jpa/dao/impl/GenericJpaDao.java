@@ -53,7 +53,6 @@ public abstract class GenericJpaDao<T, K> implements GenericDao<T, K> {
 		try {
 			EntityManager em = getEntityManager();
 			T dto = em.find(type, id);
-			System.out.println("\n\n--\n--\n    "+type+"\n-\n-\n");
 			em.close();
 			return dto;
 		} catch (Exception e) {
