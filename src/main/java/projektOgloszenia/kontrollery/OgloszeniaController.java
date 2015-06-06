@@ -117,6 +117,7 @@ public class OgloszeniaController implements Serializable {
 			return "edit";
 		}
 
+		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		helper.update(current);
 		current = null;
 		usr.setResponse("Pomyślnie edytowałeś ogłoszenie");

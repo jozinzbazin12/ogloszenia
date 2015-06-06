@@ -90,7 +90,7 @@ public class OgloszeniaHelper implements Serializable {
 	}
 
 	public void update(Ogloszenie o) {
-		ogloszenieDao.save(o);
+		ogloszenieDao.update(o);
 	}
 
 	public void delete(Ogloszenie o) {
