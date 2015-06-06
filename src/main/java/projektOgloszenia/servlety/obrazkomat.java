@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +16,9 @@ import projektOgloszenia.models.Image;
 
 public class obrazkomat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@Inject
 	private ImagesHelper helper;
-	public void init() throws ServletException {
-       helper=new ImagesHelper();
-    }
-
+	
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

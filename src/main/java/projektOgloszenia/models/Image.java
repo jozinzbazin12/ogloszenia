@@ -2,6 +2,7 @@ package projektOgloszenia.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Image implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Integer id;
+	@Column(columnDefinition="longblob")
 	private byte[] img;
 	private String opis;
 	private String typ;

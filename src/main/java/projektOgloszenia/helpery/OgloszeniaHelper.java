@@ -22,6 +22,8 @@ public class OgloszeniaHelper implements Serializable {
 
 	private static final long serialVersionUID = 4622473872387122079L;
 	@Inject
+	private KategorieHelper kathelp;
+	@Inject
 	private OgloszenieDao ogloszenieDao;
 	@Inject
 	private WarnDao warnDao;
@@ -39,11 +41,11 @@ public class OgloszeniaHelper implements Serializable {
 		List<Ogloszenie> lista2 = new ArrayList<Ogloszenie>();
 		if (kategoria != -1) {
 			pytanie += " where o.kategoria=" + kategoria;
-			List<Kategoria> kategorie = new KategorieHelper().getKategorie();
+			List<Kategoria> kategorie = kathelp.getKategorie();
 			Stack<Integer> s = new Stack<Integer>();
 			do {
 				for (Kategoria i : kategorie) {
-					if (i.getOjciec().getId() == kategoria) {
+					if (i.getOjciec()!=null && i.getOjciec().getId() == kategoria) {
 						s.push(i.getId());
 					}
 				}
@@ -54,7 +56,7 @@ public class OgloszeniaHelper implements Serializable {
 				} else
 					break;
 			} while (true);
-			while (!s.empty()) 
+			while (!s.empty())
 				pytanie += " or o.kategoria=" + s.pop() + " ";
 		}
 		List<Ogloszenie> filmList = ogloszenieDao.createQuery(pytanie);

@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -17,15 +18,14 @@ import projektOgloszenia.models.Image;
 public class podgladarka extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletContext cntxt;
+	@Inject
 	private ImagesHelper helper;
 
 	public void init() throws ServletException {
-		helper = new ImagesHelper();
 		cntxt = this.getServletContext();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String nazwa = request.getParameter("id");
 		Image img = helper.getimg(Integer.parseInt(nazwa));
 		String mime = img.getTyp();

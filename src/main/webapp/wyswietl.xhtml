@@ -32,7 +32,7 @@
 						
 						<h:dataTable class="zdjecia" value="#{ogloszeniaController.img}" var="item" rules="all" >
 	                  <h:column>
-                        <a href="http://localhost:8080/Projekt_Ogloszenia2/img?id=#{item.id}"><img src="http://localhost:8080/Projekt_Ogloszenia2/podglad?id=#{item.id}" height="200" width="200"/></a>
+                        <a href="#{info.webPath}/img?id=#{item.id}"><img src="#{info.webPath}/podglad?id=#{item.id}" height="200" width="200"/></a>
                     </h:column>
                     <h:column>
                           #{item.opis}

@@ -13,7 +13,6 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
 import projektOgloszenia.beansy.User;
-import projektOgloszenia.helpery.ImagesHelper;
 import projektOgloszenia.helpery.OgloszeniaHelper;
 import projektOgloszenia.jpa.dao.KategoriaDao;
 import projektOgloszenia.models.Image;
@@ -36,8 +35,6 @@ public class OgloszeniaController implements Serializable {
 	private KategoriaDao kategoriaDao;
 	@Inject
 	private OgloszeniaHelper helper;
-	@Inject
-	private ImagesHelper ihelper;
 	private String warn;
 	private Part plik1;
 	private Part plik2;
@@ -132,7 +129,11 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public DataModel<Image> getImg() {
-		img = new ListDataModel<Image>(ihelper.getimgs(current));
+		if (current != null)
+			img = new ListDataModel<Image>(current.getObrazki());
+		for(Image i:current.getObrazki()){
+			System.out.println(i.getTyp());
+		}
 		return img;
 	}
 
@@ -259,7 +260,7 @@ public class OgloszeniaController implements Serializable {
 		}
 		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		current.setUser(usr.getUser());
-		helper.add(current);
+		
 
 		if (plik1 != null) {
 			byte[] data = new byte[(int) plik1.getSize()];
@@ -269,7 +270,7 @@ public class OgloszeniaController implements Serializable {
 				e.printStackTrace();
 			}
 			Image a1 = new Image(data, current, opis1, typ(plik1.getHeader("content-disposition")));
-			ihelper.add(a1);
+			current.getObrazki().add(a1);
 		}
 
 		if (plik2 != null) {
@@ -280,9 +281,9 @@ public class OgloszeniaController implements Serializable {
 				e.printStackTrace();
 			}
 			Image a2 = new Image(data, current, opis2, typ(plik2.getHeader("content-disposition")));
-			ihelper.add(a2);
+			current.getObrazki().add(a2);
 		}
-
+		helper.add(current);
 		plik1 = null;
 		plik2 = null;
 		current = null;
