@@ -50,7 +50,7 @@
                         <f:facet name="header">
                             <h:outputText value="Kategoria"/>
                         </f:facet>
-                        <h:outputText value="#{item.kategoria2}"/>
+                        <h:outputText value="#{item.kategoria.nazwa}"/>
                     </h:column>
                 </h:dataTable>
                   <h:commandLink action="#{ogloszeniaController.previous}" value="Wstecz  " rendered="#{ogloszeniaController.hasPreviousPage}"/>

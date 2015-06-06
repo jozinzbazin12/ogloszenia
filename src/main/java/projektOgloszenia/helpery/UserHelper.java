@@ -29,7 +29,7 @@ public class UserHelper implements Serializable{
 	}
 
 	public void update(Konto k) {
-		kontoDao.save(k);
+		kontoDao.update(k);
 	}
 
 }

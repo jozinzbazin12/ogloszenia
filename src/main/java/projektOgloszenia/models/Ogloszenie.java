@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import projektOgloszenia.kontrollery.KategorieController;
 
@@ -36,8 +35,6 @@ public class Ogloszenie implements Serializable {
 	private int wyswietlen;
 	@ManyToOne
 	private Kategoria kategoria;
-	@Transient
-	private String kategoria2;
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Image> obrazki;
 
@@ -148,10 +145,6 @@ public class Ogloszenie implements Serializable {
 		this.kategoria = kategoria;
 	}
 
-	public void setKategoria2(String kategoria2) {
-		this.kategoria2 = kategoria2;
-	}
-
 	public int getWyswietlen() {
 		wyswietlen++;
 		return this.wyswietlen;
@@ -161,9 +154,6 @@ public class Ogloszenie implements Serializable {
 		this.wyswietlen = wyswietlen;
 	}
 
-	public String getKategoria2() {
-		return kategoria2;
-	}
 
 	public List<Image> getObrazki() {
 		return obrazki;

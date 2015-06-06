@@ -37,49 +37,50 @@ public class OgloszeniaHelper implements Serializable {
 	}
 
 	public List<Ogloszenie> getOgloszenia(int kategoria, String miasto, String fraza) {
-		String pytanie = "SELECT o from Ogloszenie o";
+		String pytanie = "SELECT o from Ogloszenie o join o.kategoria k";
 		List<Ogloszenie> lista2 = new ArrayList<Ogloszenie>();
 		if (kategoria != -1) {
-			pytanie += " where o.kategoria=" + kategoria;
+			pytanie += " where k.id=" + kategoria;
 			List<Kategoria> kategorie = kathelp.getKategorie();
 			Stack<Integer> s = new Stack<Integer>();
 			do {
 				for (Kategoria i : kategorie) {
-					if (i.getOjciec()!=null && i.getOjciec().getId() == kategoria) {
+					if (i.getOjciec() != null && i.getOjciec().getId() == kategoria) {
 						s.push(i.getId());
 					}
 				}
 
 				if (!s.empty()) {
 					kategoria = s.pop();
-					pytanie += " or o.kategoria=" + kategoria;
+					pytanie += " or k.id=" + kategoria;
 				} else
 					break;
 			} while (true);
 			while (!s.empty())
-				pytanie += " or o.kategoria=" + s.pop() + " ";
+				pytanie += " or k.id=" + s.pop() + " ";
 		}
 		List<Ogloszenie> filmList = ogloszenieDao.createQuery(pytanie);
-
 		if (filmList != null)
 			for (Ogloszenie i : filmList) {
-				if (fraza == "" && miasto == "") {
+				if (empty(fraza)&&empty(miasto)) {
+					lista2.add(i);
+					System.out.println(i.getId());
+					continue;
+				}
+				if (!empty(fraza) && (i.getTytul().toLowerCase().contains(fraza.toLowerCase()) || i.getTresc().toLowerCase().contains(fraza.toLowerCase()))) {
 					lista2.add(i);
 					continue;
 				}
-				if (fraza != "" && (i.getTytul().toLowerCase().contains(fraza.toLowerCase()) || i.getTresc().toLowerCase().contains(fraza.toLowerCase()))) {
 
-					lista2.add(i);
-					continue;
-				}
-
-				if (miasto != "" && i.getMiasto().toLowerCase().contains(miasto.toLowerCase())) {
+				if (!empty(miasto) && i.getMiasto().toLowerCase().contains(miasto.toLowerCase())) {
 					lista2.add(i);
 				}
 			}
 		return lista2;
 	}
-
+	private boolean empty(String a){
+		return a==null || a=="" ||a.equals("");
+	}
 	public List<Ogloszenie> getOgloszenia(Konto konto) {
 		return ogloszenieDao.findAllUserOgloszenie(konto);
 	}

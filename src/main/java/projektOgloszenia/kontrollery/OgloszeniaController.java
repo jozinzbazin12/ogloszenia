@@ -80,6 +80,7 @@ public class OgloszeniaController implements Serializable {
 
 	public void szukaj() {
 		recreate();
+		System.out.println("dupa "+wybfraza+" "+wybmiasto);
 		pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
 		size = pom.size();
 		data = new ListDataModel<Ogloszenie>(pom);
