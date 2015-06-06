@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.OgloszeniaHelper;
@@ -24,7 +25,7 @@ import projektOgloszenia.util.Wulgaryzmorozpoznawacz;
 @Named("ogloszeniaController")
 @MultipartConfig
 public class OgloszeniaController implements Serializable {
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = 6567350708626777316L;
 	private Ogloszenie current;
 	private DataModel<Ogloszenie> data;
@@ -79,6 +80,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public void szukaj() {
+                log.info("Wywo≥ano metodÍ 'szukaj()' z klasy Og≥oszeniaController");
 		recreate();
 		System.out.println("dupa "+wybfraza+" "+wybmiasto);
 		pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
@@ -107,11 +109,12 @@ public class OgloszeniaController implements Serializable {
 		current = getWlasne().getRowData();
 		helper.delete(current);
 		recreate();
-		usr.setResponse("Pomy≈õlnie usunƒÖ≈Çe≈õ og≈Çoszenie");
+		usr.setResponse("Pomyúlnie usunπ≥eú og≥oszenie");
 		return "user";
 	}
 
 	public String edytuj() {
+                log.info("Wywo≥ano metodÍ 'edytuj()' z klasy OgloszeniaController");
 		String res = sprawdz();
 		if (res != "") {
 			return "edit";
@@ -120,14 +123,15 @@ public class OgloszeniaController implements Serializable {
 		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		helper.update(current);
 		current = null;
-		usr.setResponse("Pomy≈õlnie edytowa≈Çe≈õ og≈Çoszenie");
+		usr.setResponse("Pomyúlnie edytowa≥eú og≥oszenie");
 		recreate();
 		return "user";
 	}
 
 	public void wyslijwarn() {
+                log.info("Wywo≥ano metodÍ 'wyslijwarn()' z klasy OgloszeniaController");
 		helper.warn(new Warn(current, warn));
-		usr.setResponse("Pomy≈õlnie wys≈Ça≈Çe≈õ skargƒô");
+		usr.setResponse("Pomyúlnie wys≥a≥eú skargÍ");
 		warn="";
 	}
 
@@ -189,6 +193,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public String sprawdz() {
+                log.info("Wywo≥ano metodÍ 'sprawdz()' z klasy OgloszeniaController");
 		if (wybkategoria == -1) {
 			usr.setResponse("Wybierz kategoriƒô!");
 			return "dodaj";
@@ -257,6 +262,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public String dodaj() {
+                log.info("Wywo≥ano metodÍ 'dodaj()' z klasy OgloszeniaController");
 		String res = sprawdz();
 		if (res != "") {
 			return "dodaj";

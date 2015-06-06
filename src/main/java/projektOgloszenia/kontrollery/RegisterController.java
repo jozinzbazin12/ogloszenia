@@ -7,6 +7,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.RegisterHelper;
@@ -15,7 +16,7 @@ import projektOgloszenia.models.Konto;
 @SessionScoped
 @Named("registerController")
 public class RegisterController implements Serializable {
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = 5985792256146994765L;
 	private Konto current;
 	private String haslo;
@@ -37,6 +38,7 @@ public class RegisterController implements Serializable {
 	}
 
 	public String zapisz() {
+                log.info("Wywo³ano metodê 'zapisz()' z klasy RegisterController");
 		helper.save(current);
 		usr.setResponse("Pomyœlnie edytowa³eœ konto " + current.getLogin());
 		recreate();
@@ -49,6 +51,7 @@ public class RegisterController implements Serializable {
 	}
 
 	public void usun() {
+                log.info("Wywo³ano metodê 'usun()' z klasy RegisterController");
 		current = getData().getRowData();
 		usr.setResponse("Pomyœlnie usun¹³eœ konto " + current.getLogin());
 		helper.delete(current);
@@ -56,6 +59,7 @@ public class RegisterController implements Serializable {
 	}
 
 	public String rejestracja() {
+                log.info("Wywo³ano metodê 'rejestracja()' z klasy RegisterController");
 		if (current.getLogin() == null || helper.czyjest(current.getLogin())) {
 			usr.setResponse("Brak loginu, lub konto ju¿ istnieje");
 			return "rejestracja";

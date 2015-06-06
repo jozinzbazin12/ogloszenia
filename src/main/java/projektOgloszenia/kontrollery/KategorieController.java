@@ -9,6 +9,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.KategorieHelper;
@@ -18,7 +19,7 @@ import projektOgloszenia.models.Kategoria;
 @SessionScoped
 @Named("kategorieController")
 public class KategorieController implements Serializable {
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = -6590221640560781844L;
 	private List<Kategoria> kat_list;
 	private DataModel<Kategoria> data;
@@ -43,12 +44,13 @@ public class KategorieController implements Serializable {
 	}
 
 	public void dodaj() {
+                log.info("Wywo≥ano metodÍ 'dodaj()' z klasy KategorieController");
 		Kategoria ociec = kategoriaDao.findById(ojciec);
 		if (ociec != null || ojciec == 0) {
 			Kategoria a = new Kategoria(nazwa, ociec);
 
 			helper.add(a);
-			usr.setResponse("Pomy≈õlnie doda≈Çe≈õ kategorie");
+			usr.setResponse("Pomyúlnie doda≥eú kategorie");
 			recreate();
 		} else
 			usr.setResponse("Niepoprawne dane");
@@ -57,9 +59,10 @@ public class KategorieController implements Serializable {
 	}
 
 	public void usun() {
+                log.info("Wywo≥ano metodÍ 'usun()' z klasy KategorieController");
 		current = getData().getRowData();
 		helper.delete(current);
-		usr.setResponse("Pomy≈õlnie doda≈Çe≈õ kategorie");
+		usr.setResponse("Pomyúlnie doda≥eú kategorie");
 		recreate();
 	}
 
@@ -69,7 +72,7 @@ public class KategorieController implements Serializable {
 	}
 
 	public void daj_kategorie() {
-
+                log.info("Wywo≥ano metodÍ 'daj_kategorie()' (wybierz kategorie) z klasy KategorieController");
 		List<Kategoria> kategorie = kategoriaDao.findAll();
 
 		int ociec;
@@ -114,7 +117,7 @@ public class KategorieController implements Serializable {
 		}
 		Kategoria xd = new Kategoria();
 		xd.setId(-1);
-		xd.setNazwa("/Wybierz kategoriƒô\\");
+		xd.setNazwa("/Wybierz kategoriÍ\\");
 		kat_list.add(0, xd);
 	}
 

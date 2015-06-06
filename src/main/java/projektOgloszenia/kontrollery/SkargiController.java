@@ -7,6 +7,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.SkargiHelper;
@@ -15,7 +16,7 @@ import projektOgloszenia.models.Warn;
 @SessionScoped
 @Named("skargiController")
 public class SkargiController implements Serializable{
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = -197856375422387184L;
 	private Warn current;
 	private DataModel<Warn> data;
@@ -36,8 +37,9 @@ public class SkargiController implements Serializable{
 	}
 	
 	public void usun() {
+                log.info("Wywo³ano metodê 'usun()' z klasy SkargiController");
 		current = getData().getRowData();
-		usr.setResponse("PomyÅ›lnie usunÄ…Å‚eÅ› skargÄ™");
+		usr.setResponse("Pomyœ›lnie usun¹³eœ skargê");
 		helper.delete(current);
 		recreate();
 	}

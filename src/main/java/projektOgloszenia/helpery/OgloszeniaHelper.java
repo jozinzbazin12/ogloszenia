@@ -8,6 +8,7 @@ import java.util.Stack;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.jpa.dao.OgloszenieDao;
 import projektOgloszenia.jpa.dao.WarnDao;
@@ -19,7 +20,7 @@ import projektOgloszenia.models.Warn;
 @Named
 @ApplicationScoped
 public class OgloszeniaHelper implements Serializable {
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = 4622473872387122079L;
 	@Inject
 	private KategorieHelper kathelp;
@@ -37,6 +38,7 @@ public class OgloszeniaHelper implements Serializable {
 	}
 
 	public List<Ogloszenie> getOgloszenia(int kategoria, String miasto, String fraza) {
+                log.info("Wywo³ano metodê getOgloszenia(kategoria,miasto,fraza) z klasy OgloszeniaHelper");
 		String pytanie = "SELECT o from Ogloszenie o join o.kategoria k";
 		List<Ogloszenie> lista2 = new ArrayList<Ogloszenie>();
 		if (kategoria != -1) {

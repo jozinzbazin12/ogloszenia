@@ -7,6 +7,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.log4j.Logger;
 
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.NotatkiHelper;
@@ -15,7 +16,7 @@ import projektOgloszenia.models.Notatka;
 @Named("notatkiController")
 @SessionScoped
 public class NotatkiController implements Serializable {
-
+        private final Logger log= Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = 2606582761016486844L;
 	private DataModel<Notatka> data;
 	@Inject
@@ -26,6 +27,7 @@ public class NotatkiController implements Serializable {
 	private User usr;
 
 	public void usun() {
+                log.info("Wywo³ano metodê 'usun()' z klasy NotatkiController");
 		current = getData().getRowData();
 		usr.setResponse("Pomyœlnie usun¹³eœ notatkê");
 		helper.usun(current);
@@ -33,6 +35,7 @@ public class NotatkiController implements Serializable {
 	}
 
 	public void dodaj() {
+                log.info("Wywo³ano metodê 'dodaj()' z klasy NotatkiController");
 		Notatka a = new Notatka(tresc);
 		helper.add(a);
 		recreate();
