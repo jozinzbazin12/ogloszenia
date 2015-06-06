@@ -52,6 +52,8 @@ public class KategorieController implements Serializable {
 			recreate();
 		} else
 			usr.setResponse("Niepoprawne dane");
+		nazwa="";
+		ojciec=0;
 	}
 
 	public void usun() {
@@ -62,9 +64,7 @@ public class KategorieController implements Serializable {
 	}
 
 	public DataModel<Kategoria> getData() {
-		if (data == null) {
 			data = new ListDataModel<Kategoria>(helper.getKategorie());
-		}
 		return data;
 	}
 

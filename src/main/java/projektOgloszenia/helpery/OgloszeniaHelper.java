@@ -86,7 +86,7 @@ public class OgloszeniaHelper implements Serializable {
 	}
 
 	public void warn(Warn w) {
-		warnDao.save(w);
+		warnDao.update(w);
 	}
 
 	public void update(Ogloszenie o) {

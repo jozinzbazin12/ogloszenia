@@ -32,7 +32,7 @@ public class RegisterHelper implements Serializable {
 	}
 
 	public void save(Konto k) {
-		kontoDao.save(k);
+		kontoDao.update(k);
 	}
 
 }

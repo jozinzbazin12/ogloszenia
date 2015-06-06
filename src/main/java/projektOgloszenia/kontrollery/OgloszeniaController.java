@@ -127,6 +127,7 @@ public class OgloszeniaController implements Serializable {
 	public void wyslijwarn() {
 		helper.warn(new Warn(current, warn));
 		usr.setResponse("Pomyślnie wysłałeś skargę");
+		warn="";
 	}
 
 	public DataModel<Image> getImg() {

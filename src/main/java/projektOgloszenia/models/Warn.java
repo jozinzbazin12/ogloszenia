@@ -2,7 +2,6 @@ package projektOgloszenia.models;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +14,7 @@ public class Warn implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Integer id;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Ogloszenie ogloszenie;
 	private String czemu;
 
