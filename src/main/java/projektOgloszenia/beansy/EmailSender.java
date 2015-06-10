@@ -36,8 +36,9 @@ public class EmailSender implements Serializable {
 			m.setSentDate(new Date());
 			m.setText(body);
 			Transport.send(m, session.getProperties().getProperty("mail.user"), session.getProperties().getProperty("mail.password"));
+			log.info("Wys³ano maila do "+to);
 		} catch (MessagingException e) {
-			log.error("Error while sending mail", e);
+			log.error("B³¹d podczas wysy³ania maila", e);
 		}
 	}
 

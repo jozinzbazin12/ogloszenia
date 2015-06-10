@@ -295,11 +295,11 @@ public class OgloszeniaController implements Serializable {
 			current.getObrazki().add(a2);
 		}
 		helper.add(current);
+		email.sendMail(usr.getUser().getEmail(), "Nowe og³oszenia", "Dodano nowe og³oszenie: "+current.getTytul());
 		plik1 = null;
 		plik2 = null;
 		current = null;
 		recreate();
-		email.sendMail(usr.getUser().getEmail(), "Nowe og³oszenia", "Dodano nowe og³oszenie.");
 		usr.setResponse("Pomyœlnie doda³eœ og³oszenie");
 		return "home";
 	}
