@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Resource Definitions //EN" "http://www.sun.c​om/software/apps​erver/dtds/sun-r​esources_1_3.dtd​">
+<resources>
+<mail-resource debug="true" enabled="true" from="q123test@interia​.pl" host="poczta.interia.p​l" jndi-name="mail/mySession" object-type="user" store-protocol="imap" store-protocol-c​lass="com.sun.mail.ima​p.IMAPStore" transport-protoc​ol="smtp" transport-protoc​ol-class="com.sun.mail.smt​p.SMTPTransport" user="q123test@interia​.pl">
+<description/>
+<property name="mail.user" value="q123test@interia​.pl"/>
+<property name="mail.password" value="haslo123"/>
+<property name="mail.host" value="poczta.interia.p​l"/>
+<property name="mail.port" value="465"/>
+<property name="mail.smtp.socket​Factory.port" value="465"/>
+<property name="mail.smtp.socket​Factory.fallback​" value="false"/>
+<property name="mail.smtp.auth" value="true"/>
+<property name="mail.smtp.startt​ls.enable" value="true"/>
+</mail-resource>
+</resources>
