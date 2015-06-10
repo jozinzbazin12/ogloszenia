@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -11,8 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+
 import org.apache.log4j.Logger;
 
+import projektOgloszenia.beansy.EmailSender;
 import projektOgloszenia.beansy.User;
 import projektOgloszenia.helpery.OgloszeniaHelper;
 import projektOgloszenia.jpa.dao.KategoriaDao;
@@ -51,6 +54,8 @@ public class OgloszeniaController implements Serializable {
 	@Inject
 	private KategorieController kat;
 	private int size;
+	@EJB
+	private EmailSender email;
 
 	@Inject
 	private Wulgaryzmorozpoznawacz wulgaryzmorozpoznawacz;
@@ -292,6 +297,7 @@ public class OgloszeniaController implements Serializable {
 		plik2 = null;
 		current = null;
 		recreate();
+		email.sendMail(usr.getUser().getEmail(), "Nowe og³oszenia", "Dodano nowe og³oszenie.");
 		usr.setResponse("Pomyœlnie doda³eœ og³oszenie");
 		return "home";
 	}

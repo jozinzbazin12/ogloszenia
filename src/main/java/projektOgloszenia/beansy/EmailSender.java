@@ -1,11 +1,11 @@
 package projektOgloszenia.beansy;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
-import javax.inject.Named;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -15,11 +15,12 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 
-@Named
 @Singleton
-public class EmailSender {
+public class EmailSender implements Serializable {
 
-	private final static Logger log = Logger.getLogger(EmailSender.class.getName());
+	private static final long serialVersionUID = -5632376112554239949L;
+
+	private static Logger log = Logger.getLogger(EmailSender.class.getName());
 
 	@Resource(name = "mail/mySession")
 	private Session session;
@@ -40,4 +41,6 @@ public class EmailSender {
 		}
 	}
 
+	public EmailSender() {
+	}
 }
