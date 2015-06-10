@@ -19,7 +19,7 @@ import projektOgloszenia.models.Kategoria;
 @SessionScoped
 @Named("kategorieController")
 public class KategorieController implements Serializable {
-        private final Logger log= Logger.getLogger(getClass().getName());
+	private final Logger log = Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = -6590221640560781844L;
 	private List<Kategoria> kat_list;
 	private DataModel<Kategoria> data;
@@ -44,7 +44,7 @@ public class KategorieController implements Serializable {
 	}
 
 	public void dodaj() {
-                log.info("Wywo³ano metodê 'dodaj()' z klasy KategorieController");
+		log.info("Wywo³ano metodê 'dodaj()' z klasy KategorieController");
 		Kategoria ociec = kategoriaDao.findById(ojciec);
 		if (ociec != null || ojciec == 0) {
 			Kategoria a = new Kategoria(nazwa, ociec);
@@ -54,12 +54,12 @@ public class KategorieController implements Serializable {
 			recreate();
 		} else
 			usr.setResponse("Niepoprawne dane");
-		nazwa="";
-		ojciec=0;
+		nazwa = "";
+		ojciec = 0;
 	}
 
 	public void usun() {
-                log.info("Wywo³ano metodê 'usun()' z klasy KategorieController");
+		log.info("Wywo³ano metodê 'usun()' z klasy KategorieController");
 		current = getData().getRowData();
 		helper.delete(current);
 		usr.setResponse("Pomyœlnie doda³eœ kategorie");
@@ -67,12 +67,12 @@ public class KategorieController implements Serializable {
 	}
 
 	public DataModel<Kategoria> getData() {
-			data = new ListDataModel<Kategoria>(helper.getKategorie());
+		data = new ListDataModel<Kategoria>(helper.getKategorie());
 		return data;
 	}
 
 	public void daj_kategorie() {
-                log.info("Wywo³ano metodê 'daj_kategorie()' (wybierz kategorie) z klasy KategorieController");
+		log.info("Wywo³ano metodê 'daj_kategorie()' (wybierz kategorie) z klasy KategorieController");
 		List<Kategoria> kategorie = kategoriaDao.findAll();
 
 		int ociec;

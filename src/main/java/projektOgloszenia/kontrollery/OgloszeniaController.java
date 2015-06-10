@@ -295,7 +295,7 @@ public class OgloszeniaController implements Serializable {
 			current.getObrazki().add(a2);
 		}
 		helper.add(current);
-		email.sendMail(usr.getUser().getEmail(), "Nowe og這szenia", "Dodano nowe og這szenie: "+current.getTytul());
+		email.sendMail(current.getEmail(), "Nowe og這szenia: "+current.getTytul(), "Dodano nowe og這szenie: "+current.getTresc());
 		plik1 = null;
 		plik2 = null;
 		current = null;
