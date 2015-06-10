@@ -25,7 +25,7 @@ import projektOgloszenia.util.Wulgaryzmorozpoznawacz;
 @Named("ogloszeniaController")
 @MultipartConfig
 public class OgloszeniaController implements Serializable {
-        private final Logger log= Logger.getLogger(getClass().getName());
+	private final Logger log = Logger.getLogger(getClass().getName());
 	private static final long serialVersionUID = 6567350708626777316L;
 	private Ogloszenie current;
 	private DataModel<Ogloszenie> data;
@@ -80,9 +80,9 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public void szukaj() {
-                log.info("Wywo³ano metodê 'szukaj()' z klasy Og³oszeniaController");
+		log.info("Wywo³ano metodê 'szukaj()' z klasy Og³oszeniaController");
 		recreate();
-		System.out.println("dupa "+wybfraza+" "+wybmiasto);
+		System.out.println("dupa " + wybfraza + " " + wybmiasto);
 		pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
 		size = pom.size();
 		data = new ListDataModel<Ogloszenie>(pom);
@@ -114,7 +114,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public String edytuj() {
-                log.info("Wywo³ano metodê 'edytuj()' z klasy OgloszeniaController");
+		log.info("Wywo³ano metodê 'edytuj()' z klasy OgloszeniaController");
 		String res = sprawdz();
 		if (res != "") {
 			return "edit";
@@ -129,26 +129,24 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public void wyslijwarn() {
-                log.info("Wywo³ano metodê 'wyslijwarn()' z klasy OgloszeniaController");
+		log.info("Wywo³ano metodê 'wyslijwarn()' z klasy OgloszeniaController");
 		helper.warn(new Warn(current, warn));
 		usr.setResponse("Pomyœlnie wys³a³eœ skargê");
-		warn="";
+		warn = "";
 	}
 
 	public DataModel<Image> getImg() {
 		if (current != null)
 			img = new ListDataModel<Image>(current.getObrazki());
-		for(Image i:current.getObrazki()){
+		for (Image i : current.getObrazki()) {
 			System.out.println(i.getTyp());
 		}
 		return img;
 	}
 
 	public DataModel<Ogloszenie> getData() {
-		if (data == null) {
-			pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
-			size = pom.size();
-		}
+		pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
+		size = pom.size();
 		if (strona * usr.getIle() > size)
 			strona = 0;
 		int last = (strona + 1) * usr.getIle();
@@ -193,7 +191,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public String sprawdz() {
-                log.info("Wywo³ano metodê 'sprawdz()' z klasy OgloszeniaController");
+		log.info("Wywo³ano metodê 'sprawdz()' z klasy OgloszeniaController");
 		if (wybkategoria == -1) {
 			usr.setResponse("Wybierz kategoriÄ™!");
 			return "dodaj";
@@ -262,14 +260,13 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public String dodaj() {
-                log.info("Wywo³ano metodê 'dodaj()' z klasy OgloszeniaController");
+		log.info("Wywo³ano metodê 'dodaj()' z klasy OgloszeniaController");
 		String res = sprawdz();
 		if (res != "") {
 			return "dodaj";
 		}
 		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		current.setUser(usr.getUser());
-		
 
 		if (plik1 != null) {
 			byte[] data = new byte[(int) plik1.getSize()];
