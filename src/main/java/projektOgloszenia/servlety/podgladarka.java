@@ -28,32 +28,34 @@ public class podgladarka extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nazwa = request.getParameter("id");
 		Image img = helper.getimg(Integer.parseInt(nazwa));
-		String mime = img.getTyp();
-		response.setContentType("image");
-		ServletOutputStream out = response.getOutputStream();
-		InputStream in;
+		if (img != null) {
+			String mime = img.getTyp();
+			response.setContentType("image");
+			ServletOutputStream out = response.getOutputStream();
+			InputStream in;
 
-		if (mime.equals("image")) {
-			in = new ByteArrayInputStream(img.getImg());
-			wypisz(in, out);
-			return;
-		}
-		if (mime.equals("audio")) {
-			in = cntxt.getResourceAsStream("/Content/muzyczka.png");
-			wypisz(in, out);
-			return;
-		} else if (mime.equals("video")) {
-			in = cntxt.getResourceAsStream("/Content/video.png");
-			wypisz(in, out);
-			return;
-		} else if (mime.equals("application/x-shockwave-flash")) {
-			in = cntxt.getResourceAsStream("/Content/flash.png");
-			wypisz(in, out);
-			return;
-		} else {
-			in = cntxt.getResourceAsStream("/Content/error.png");
-			wypisz(in, out);
-			return;
+			if (mime.equals("image")) {
+				in = new ByteArrayInputStream(img.getImg());
+				wypisz(in, out);
+				return;
+			}
+			if (mime.equals("audio")) {
+				in = cntxt.getResourceAsStream("/Content/muzyczka.png");
+				wypisz(in, out);
+				return;
+			} else if (mime.equals("video")) {
+				in = cntxt.getResourceAsStream("/Content/video.png");
+				wypisz(in, out);
+				return;
+			} else if (mime.equals("application/x-shockwave-flash")) {
+				in = cntxt.getResourceAsStream("/Content/flash.png");
+				wypisz(in, out);
+				return;
+			} else {
+				in = cntxt.getResourceAsStream("/Content/error.png");
+				wypisz(in, out);
+				return;
+			}
 		}
 
 	}

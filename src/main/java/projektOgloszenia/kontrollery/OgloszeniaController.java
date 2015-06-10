@@ -154,14 +154,12 @@ public class OgloszeniaController implements Serializable {
 			last = size;
 		if (last < 0)
 			last = 0;
-		if (data == null)
-			data = new ListDataModel<Ogloszenie>(pom.subList(strona * usr.getIle(), last));
+		data = new ListDataModel<Ogloszenie>(pom.subList(strona * usr.getIle(), last));
 		return data;
 	}
 
 	public DataModel<Ogloszenie> getWlasne() {
-		if (wlasne == null)
-			wlasne = new ListDataModel<Ogloszenie>(helper.getOgloszenia(usr.getUser()));
+		wlasne = new ListDataModel<Ogloszenie>(helper.getOgloszenia(usr.getUser()));
 		return wlasne;
 	}
 

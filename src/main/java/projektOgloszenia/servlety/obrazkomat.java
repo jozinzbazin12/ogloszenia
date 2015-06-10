@@ -18,29 +18,24 @@ public class obrazkomat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private ImagesHelper helper;
-	
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String nazwa=request.getParameter("id");
-		Image img=helper.getimg(Integer.parseInt(nazwa));
-		String mime=img.getTyp();  
-		if(img!=null)
-		{
-			InputStream in=new ByteArrayInputStream(img.getImg());
-			response.setContentType(mime);  
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nazwa = request.getParameter("id");
+		Image img = helper.getimg(Integer.parseInt(nazwa));
+
+		if (img != null) {
+			String mime = img.getTyp();
+			InputStream in = new ByteArrayInputStream(img.getImg());
+			response.setContentType(mime);
 			ServletOutputStream out = response.getOutputStream();
-	        int ch=0;
-	        while ((ch=in.read()) != -1) 
-	        {
-	            out.write(ch);
-	        }
-	        out.close();
+			int ch = 0;
+			while ((ch = in.read()) != -1) {
+				out.write(ch);
+			}
+			out.close();
 		}
 	}
 
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 }
