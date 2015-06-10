@@ -80,7 +80,7 @@ public class OgloszeniaController implements Serializable {
 	}
 
 	public void szukaj() {
-		log.info("Wywo³ano metodê 'szukaj()' z klasy Og³oszeniaController");
+		log.info("Wywoï¿½ano metodï¿½ 'szukaj()' z klasy Ogï¿½oszeniaController");
 		recreate();
 		System.out.println("dupa " + wybfraza + " " + wybmiasto);
 		pom = helper.getOgloszenia(wybkategoria, wybmiasto, wybfraza);
@@ -109,7 +109,7 @@ public class OgloszeniaController implements Serializable {
 		current = getWlasne().getRowData();
 		helper.delete(current);
 		recreate();
-		usr.setResponse("Pomyœlnie usun¹³eœ og³oszenie");
+		usr.setResponse("Pomyœlnie usuniêto og³oszenie");
 		return "user";
 	}
 
@@ -123,7 +123,7 @@ public class OgloszeniaController implements Serializable {
 		current.setKategoria(kategoriaDao.findById(wybkategoria));
 		helper.update(current);
 		current = null;
-		usr.setResponse("Pomyœlnie edytowa³eœ og³oszenie");
+		usr.setResponse("Pomyœlnie edytowano og³oszenie");
 		recreate();
 		return "user";
 	}
@@ -131,7 +131,7 @@ public class OgloszeniaController implements Serializable {
 	public void wyslijwarn() {
 		log.info("Wywo³ano metodê 'wyslijwarn()' z klasy OgloszeniaController");
 		helper.warn(new Warn(current, warn));
-		usr.setResponse("Pomyœlnie wys³a³eœ skargê");
+		usr.setResponse("Pomyœlnie wys³ano skargê");
 		warn = "";
 	}
 
@@ -193,45 +193,45 @@ public class OgloszeniaController implements Serializable {
 	public String sprawdz() {
 		log.info("Wywo³ano metodê 'sprawdz()' z klasy OgloszeniaController");
 		if (wybkategoria == -1) {
-			usr.setResponse("Wybierz kategoriÄ™!");
+			usr.setResponse("Wybierz kategoriê!");
 			return "dodaj";
 		}
 		if (current.getTytul() == null || current.getTytul().equals("")) {
-			usr.setResponse("TytuÅ‚ nie moÅ¼e byc pusty");
+			usr.setResponse("Tytu³ nie moze byc pusty");
 			return "dodaj";
 		}
 		if (current.getTresc() == null || current.getTresc().equals("")) {
-			usr.setResponse("TreÅ›Ä‡ nie moÅ¼e byc pusta");
+			usr.setResponse("Treœæ nie mo¿e byc pusta");
 			return "dodaj";
 		}
 		if (current.getCena() == null || current.getCena().equals("")) {
-			usr.setResponse("Cena jakaÅ› musi byÄ‡");
+			usr.setResponse("Cena jakaœ musi byæ");
 			return "dodaj";
 		}
 		if (current.getCena() == null || current.getCena().equals("")) {
-			usr.setResponse("Email nie moÅ¼e byc pusty");
+			usr.setResponse("Email nie mo¿e byc pusty");
 			return "dodaj";
 		}
 		if (current.getTelefon() == 0) {
-			usr.setResponse("Telefon nie moÅ¼e byc pusty");
+			usr.setResponse("Telefon nie mo¿e byc pusty");
 			return "dodaj";
 		}
 		if (current.getMiasto() == null || current.getMiasto().equals("")) {
-			usr.setResponse("Miasto nie moÅ¼e byc pusty");
+			usr.setResponse("Miasto nie mo¿e byæ");
 			return "dodaj";
 		}
 		if (current.getKodPocztowy() == null || current.getKodPocztowy().equals("")) {
-			usr.setResponse("Kod pocztowy nie moÅ¼e byc pusty");
+			usr.setResponse("Kod pocztowy nie mo¿e byc pusty");
 			return "dodaj";
 		}
 		if (current.getUlica() == null || current.getUlica().equals("")) {
-			usr.setResponse("ulica nie moÅ¼e byc pusty");
+			usr.setResponse("Ulica nie mo¿e byc pusta");
 			return "dodaj";
 		}
 		if (wulgaryzmorozpoznawacz.szukaj(current.getTytul()) || wulgaryzmorozpoznawacz.szukaj(current.getTresc())
 				|| wulgaryzmorozpoznawacz.szukaj(current.getCena()) || wulgaryzmorozpoznawacz.szukaj(current.getEmail())
 				|| wulgaryzmorozpoznawacz.szukaj(current.getKodPocztowy()) || wulgaryzmorozpoznawacz.szukaj(current.getUlica())) {
-			usr.setResponse("Ladnie to tak przeklinaÄ‡?");
+			usr.setResponse("Ladnie to tak przeklinaæ?");
 			return "dodaj";
 		}
 		return "";
@@ -294,7 +294,7 @@ public class OgloszeniaController implements Serializable {
 		plik2 = null;
 		current = null;
 		recreate();
-		usr.setResponse("PomyÅ›lnie dodaÅ‚eÅ› ogÅ‚oszenie");
+		usr.setResponse("Pomyœlnie doda³eœ og³oszenie");
 		return "home";
 	}
 
